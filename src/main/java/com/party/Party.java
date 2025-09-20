@@ -20,6 +20,8 @@ public class Party {
     // Giocatori con la chat party attiva
     private final Set<UUID> chatToggled = new HashSet<>();
 
+    private String description = "";
+
     public Party(String id, String name, UUID leader) {
         this.id = id;
         this.name = name;
@@ -39,7 +41,13 @@ public class Party {
     public void setName(String name) {
         this.name = name;
     }
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public UUID getLeader() {
         return leader;
     }

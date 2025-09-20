@@ -45,6 +45,7 @@ public class PartyManager {
             String name = config.getString(key + ".name");
             UUID leader = UUID.fromString(config.getString(key + ".leader"));
             Party party = new Party(key, name, leader);
+            party.setDescription(config.getString(key + ".description", ""));
 
             // Membri
             if (config.contains(key + ".members")) {
@@ -80,6 +81,9 @@ public class PartyManager {
             for (Map.Entry<Role, String> entry : party.getRankNicknames().entrySet()) {
                 config.set(party.getId() + ".rankNicknames." + entry.getKey(), entry.getValue());
             }
+
+            // Salva la descrizione del party
+            config.set(party.getId() + ".description", party.getDescription());
         }
         try {
             config.save(file);
@@ -87,7 +91,6 @@ public class PartyManager {
             e.printStackTrace();
         }
     }
-
     public void addParty(Party party) {
         parties.put(party.getId(), party);
         for (UUID member : party.getMembers().keySet()) {
@@ -132,7 +135,17 @@ public class PartyManager {
         party.addMember(player, role);
         playerToParty.put(player, party.getId());
     }
+    public void disbandParty(Party party) {
+        if (party == null) return;
 
+        // Rimuovi tutti i giocatori da quel party
+        for (UUID member : new HashSet<>(party.getMembers().keySet())) {
+            party.removeMember(member);
+        }
+
+        // Rimuovi il party dalla lista globale
+        parties.remove(party.getName().toLowerCase());
+    }
     public void removeMember(Party party, UUID player) {
         party.removeMember(player);
         playerToParty.remove(player);

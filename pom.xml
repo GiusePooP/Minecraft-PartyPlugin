@@ -6,7 +6,7 @@
 
     <groupId>com.party</groupId>
     <artifactId>PartyPlugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <properties>
         <!-- Paper 1.21.x richiede Java 17 -->

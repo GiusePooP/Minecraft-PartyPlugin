@@ -1,9 +1,9 @@
 name: PartyPlugin
-version: 1.0.0
+version: 1.1.0
 main: com.party.PartyPlugin
 api-version: 1.21
 description: Plugin Minecraft per gestione party complessi con ruoli e chat privata
-author: IlTuoNome
+author: GiuseppeNetta
 
 commands:
   party:
